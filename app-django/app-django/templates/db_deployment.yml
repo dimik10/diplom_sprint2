@@ -4,6 +4,7 @@ metadata:
   name: db-dep
   labels:
     k8s-app: app-dpdt
+    gitlab: diplom
 spec:
   replicas: 1
   selector:
