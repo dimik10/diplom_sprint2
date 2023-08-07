@@ -58,7 +58,7 @@ sudo docker-compose up -d
 sudo docker ps -a
 sleep 10
 curl -sI http://127.0.0.1:3003 | grep "HTTP" | awk '{print $2}'
-a=$(curl -sI http://127.0.0.1:3003| grep "HTTP" | awk '{print $2}') b=200 ; if [[ "$a" == "$b" ]] ; then echo "вернулся код 200" ; else curl -s -X POST https://api.telegram.org/bot6181658501:AAElwqpQSejeKmdkN13ew3QXksExjnZYCzE/sendMessage -d chat_id=-1001954869079 -d text="Вернулся HTTP код: $a" && exit 2; fi
+a=$(curl -sI http://127.0.0.1:3003| grep "HTTP" | awk '{print $2}') b=200 ; if [[ "$a" == "$b" ]] ; then echo "вернулся код 200" ; else curl -s -X POST https://api.telegram.org/bot:/sendMessage -d chat_id=-1 text="Вернулся HTTP код: $a" && exit 2; fi
 curl -sI http://127.0.0.1:3003 | grep "Server" | awk '{print $2 $3}' | md5sum | awk '{print $1}'
 a=$(curl -sI http://127.0.0.1:3003 | grep "Server" | awk '{print $2 $3}' | md5sum | awk '{print $1}') b=59461c8db10bda3b344c1428734e6d89 ; if [[ "$a" == "$b" ]] ; then echo "сумма сошлась" ; else curl -s -X POST https://api.telegram.org/bot:/sendMessage -d chat_id=-1 -d text="check summ error"&& exit 2; fi
 sudo docker-compose stop
