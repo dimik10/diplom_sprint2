@@ -53,7 +53,7 @@ usermod -aG docker ubuntu
 
 https://miro.com/app/board/uXjVPqxbhLI=/
 
-шаг1
+- шаг1
 mkdir -p private_data
 cp django-pg-docker/private.var.example private_data/private.var
 cd django-pg-docker
@@ -68,7 +68,7 @@ a=$(curl -sI http://127.0.0.1:3003 | grep "Server" | awk '{print $2 $3}' | md5su
 sudo docker-compose stop
 curl -s -X POST https://api.telegram.org/bot:/sendMessage -d chat_id=-1 -d text="build ok"
 
-шаг2
+- шаг2
 sudo docker tag django-pg-docker_app dimik10/diplom:v1.2
 sudo docker push dimik10/diplom:v1.2
 
@@ -76,18 +76,21 @@ sudo docker push dimik10/diplom:v1.2
 Секретные данные кодирую и помещаю в манифест "credentials.yaml"
 Все ключи кодирую base64
 
-Создаю отдельное имя для приложения: diplom
+- Создаю отдельное имя для приложения: diplom
+
 kubectl create namespace diplom
 
-Переходим в каталог с манифестами и запускаем приложение:
+- Переходим в каталог с манифестами и запускаем приложение:
+
 kubectl apply -f . -n diplom
 
-Для удаления приложения с кластера переходим в каталог с манифестами:
+- Для удаления приложения с кластера переходим в каталог с манифестами:
+
 kubectl delete -f . -n diplom 
 
-Задача 2: Helm-chart.
+- Задача 2: Helm-chart.
 
-Создаём helm chart
+- Создаём helm chart
 helm create app-django
 tree app-django
 
